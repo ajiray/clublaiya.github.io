@@ -1,0 +1,532 @@
+<!doctype html>
+<html class="">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore Club Laiya Beachtown, a luxurious seaside retreat offering Spinnaker beachfront condos, Residential Premier residences, and Residential Seaside accommodations. Experience the perfect blend of luxury living and coastal tranquility.">
+<meta name="keywords" content="Club Laiya, Beachtown, Spinnaker, Seaside District, Premier District, luxury living, beachfront condos, seaside accommodations">
+  <meta name="author" content="Ajiray Diego De Leon">
+  <link href="./output.css" rel="stylesheet">
+  <title>CLUB LAIYA</title>
+</head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<link rel="stylesheet" href=
+"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Archivo&display=swap');
+    
+    p {
+    font-family: 'Archivo', sans-serif;
+   
+}
+
+h1 {
+    font-family: 'Poppins', sans-serif;
+ 
+}
+a {
+    font-family: 'Archivo', sans-serif;
+ 
+}
+
+    #slideshow {
+    position: relative;
+    overflow: hidden;
+}
+
+#slideshow img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+#slideshow img:first-child {
+    opacity: 1; /* Set the opacity of the first image to 1 */
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Style for the navigation links */
+ul li {
+    display: inline-block;
+    margin-right: 30px;
+    position: relative;
+}
+
+/* Style for the underline effect on hover and active */
+ul li a {
+    text-decoration: none;
+    color: #e5e7eb; /* Change the color as needed */
+    position: relative;
+    overflow: hidden;
+}
+
+ul li a::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    top: 25px;
+    left: 0;
+    background-color: #fff; /* Change the color as needed */
+    transition: width 0.4s ease;
+}
+
+ul li a:hover::before,
+ul li a.active::before {
+    width: 100%;
+}
+
+
+@keyframes fadeLeft {
+    from {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes fadeOutToRight {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+}
+
+  #backToTopBtn {
+    animation: fadeLeft 0.5s ease-out;
+    border: none;
+    border-radius: 100%; /* Rounded corners */
+    padding: 5px 10px; /* Adjust padding as needed */
+    cursor: pointer;
+  }
+
+  #backToTopBtn.fade-out {
+    animation: fadeOutToRight 0.5s ease-out;
+    opacity: 0; /* Ensure the initial state is transparent */
+    pointer-events: none; /* Disable pointer events during the fade-out */
+} 
+
+#fourth img {
+  width: 180px;
+  height: auto;
+  transition: transform 0.3s ease-in-out; /* Added transition for smooth effect */
+  cursor: pointer;
+}
+
+#fourth img:hover {
+  transform: scale(1.05); /* Increase the scale factor for a zoom-in effect */
+}
+
+.scroller {
+  max-width: 100%;
+}
+
+.scroller__inner {
+  gap: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.scroller[data-animated="true"] {
+  overflow: hidden;
+
+}
+
+.scroller[data-animated="true"] .scroller__inner {
+  width: max-content;
+  flex-wrap: nowrap;
+  animation: scroll var(--_animation-duration, 40s)
+    var(--_animation-direction, forwards) linear infinite;
+}
+
+.scroller[data-direction="left"] {
+  --_animation-direction: reverse;
+}
+
+.scroller[data-direction="left"] {
+  --_animation-direction: forwards;
+}
+
+.scroller[data-speed="fast"] {
+  --_animation-duration: 5s;
+}
+
+.scroller[data-speed="slow"] {
+  --_animation-duration: 25s;
+}
+
+@keyframes scroll {
+  to {
+    transform: translate(calc(-50% - 0.5rem));
+  }
+}
+
+.modal {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 1;
+    }
+
+    /* Style for the image inside the modal */
+    .modal-content {
+        max-width: 80%;
+        max-height: 80%;
+    }
+
+    .image-container {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .image-container:hover img {
+        transform: scale(1.1); /* Increase the scale on hover */
+        transition: transform 0.3s ease; /* Add a smooth transition effect */
+    }
+
+
+</style>
+<body class="h-screen w-full overflow-x-hidden">
+
+  <div class="hidden fixed inset-0 bg-white overflow-hidden z-50" id="menu">
+    <div class="flex flex-col justify-start items-center w-full h-full space-y-10 mt-20">
+      <i class="fa-solid fa-x absolute right-5 top-7 text-2xl cursor-pointer" onclick="showMenu()"></i>
+      <p><a href="/src/index.html" class="text-4xl tracking-wider">Home</a></p>
+      <p><a href="/src/spinnaker.html" class="text-4xl tracking-wider">Spinnaker</a></p>
+      <p><a href="/src/seaside.html" class="text-4xl tracking-wider">Seaside District</a></p>
+      <p><a href="/src/premier.html" class="text-4xl tracking-wider">Premier District</a></p>
+      <p><a href="/src/contactUs.html" class="text-4xl tracking-wider">Contact Us</a></p>
+    </div>
+   </div>
+
+
+    <button class="text-2xl fixed right-5 lg:bottom-5 bottom-10 z-30 hidden bg-blue-400 text-white hover:bg-blue-600 transition duration-300 ease-in-out" id="backToTopBtn" onclick="backToTop()">
+      <i class="fa-solid fa-angles-up"></i>
+      </button>
+
+  <!-- First Section -->
+<section id="first" class="h-full w-full relative">
+  
+   
+    <img src="/images/clublaiya/home-bg2.png" alt="club laiya beachtown" class="w-full h-full object-cover">
+  
+    
+
+
+  <!-- navbar -->
+ <nav class="w-full h-[10%] flex justify-between xl:justify-center space-x-24 items-center absolute top-0">
+    
+    <img src="/images/logo.png" alt="logo" class="w-40 h-14 xl:ml-10">
+
+    <div class="xl:hidden absolute right-8 text-gray-200" onclick="showMenu()" id="burger">
+    <i class=" fa-solid fa-bars fa-lg cursor-pointer"></i>
+  </div>
+    <ul class="mr-10 hidden xl:block">
+        <li><a href="/src/index.html" class="border-b-2 border-gray-200 pb-2 tracking-wider">Home</a></li>
+        <li><a href="/src/spinnaker.html" class="tracking-wider">Spinnaker</a></li>
+        <li><a href="/src/seaside.html" class="tracking-wider">Seaside District</a></li>
+        <li><a href="/src/premier.html" class="tracking-wider border-r-2 border-gray-300 pr-4">Premier District</a></li>
+        <button><a href="/src/contactUs.html" class="bg-amber-500 text-gray-800 font-semibold px-8 py-3 rounded-full hover:bg-amber-600 transition duration-300 tracking-wider">Contact Us</a></button>
+        
+    </ul>
+ </nav>
+
+ 
+
+ 
+ <!-- End of navbar -->
+
+ <!-- 1st section image slider -->
+ 
+ <!-- end of slider -->
+
+
+  <!-- 1st section info -->
+  <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-gray-100 w-full">
+    <h1 class="font-extrabold mb-3 text-7xl md:text-8xl w-full xl:text-9xl tracking-widest text-gray-200" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out">CLUB LAIYA</h1>
+    <p class="text-2xl xl:text-4xl tracking-widest text-gray-200 mb-5" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out">Beachtown</p>
+    <button class="bg-amber-500 text-gray-800 font-semibold px-8 py-3 rounded-full hover:bg-amber-600 transition duration-300 tracking-wider" onclick="navigateToSecond()" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out">Explore Now</button>
+</div>
+
+
+
+  <!-- end of info -->
+
+</section>
+
+<section class="flex-col w-full h-auto py-20 flex justify-center items-center xl:flex-row" id="second">
+  <div class="w-full xl:w-1/2 h-full flex justify-center items-center">
+    <img src="/images/clublaiya/Club Laiya.png" alt="" class="w-full max-w-[700px] xl:max-w-[900px] xl:ml-20 rounded-md shadow" data-aos="fade-up" data-aos-anchor-placement="bottom-bottom" data-aos-delay="50">
+  </div>
+
+  <div class="w-full xl:w-1/2 h-full flex flex-col justify-center items-center mt-10 xl:mt-0 space-y-10 xl:space-y-20">
+  <p class="text-lg lg:text-xl xl:text-2xl text-center text-gray-800 mb-4 px-4 py-10 shadow-md border-t-2 border-gray-900 font-medium tracking-wide" data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">Master-planned and sustainable resort estate tourism communities</p>
+  <p class="text-lg lg:text-xl xl:text-2xl text-center text-gray-800 mb-4 px-4 py-10 shadow-md border-t-2 border-gray-900" data-aos="fade-up" data-aos-anchor-placement="bottom-bottom" data-aos-delay="100">Creating the new standard of beachside living</p>
+  <p class="text-lg lg:text-xl xl:text-2xl text-center text-gray-800 mb-4 px-4 py-10 shadow-md border-t-2 border-gray-900" data-aos="fade-up" data-aos-anchor-placement="bottom-bottom" data-aos-delay="200">Modern hometown conveniently located amidst the sun and the sea</p>
+
+  </div>
+</section>
+
+
+  <!-- end of 1st section -->
+
+  <section class="w-full h-full bg-gradient-to-b from-white to-nude pt-20">
+
+    <h2 class="text-5xl lg:text-7xl font-bold text-gray-700 text-center" data-aos="fade-up">FEATURED LISTING</h2>
+    <div class="space-y-10 lg:space-y-0 items-center w-full h-full flex justify-center lg:items-start mt-20 lg:space-x-10 flex-col lg:flex-row">
+            <div class="w-[350px] lg:w-[400px] h-[500px] rounded-md relative" style="background-image: url('/images/spinnaker/spinnaker.jpg'); background-size: cover; background-position: center;" data-aos="fade-up" data-aos-delay="50">
+                <a href="/src/spinnaker.html"><button class="absolute top-2 right-2 bg-blue-400 text-white py-2 px-4 rounded-full hover:bg-blue-600 transition duration-300 ease-in-out"><i class="fa-solid fa-arrow-right"></i></button></a>
+                <h2 class="text-xl font-bold absolute bottom-0 bg-black bg-opacity-50 text-white p-2 rounded-md text-center w-full">Spinnaker Beachfront Condo</h2>
+            </div>
+
+
+            <div class="w-[350px] lg:w-[400px] h-[500px] rounded-md relative" style="background-image: url('/images/premierSeaside/1.png'); background-size: cover; background-position: center;" data-aos="fade-up" data-aos-delay="100">
+                <a href="/src/seaside.html"><button class="absolute top-2 right-2 bg-blue-400 text-white py-2 px-4 rounded-full hover:bg-blue-600 transition duration-300 ease-in-out"><i class="fa-solid fa-arrow-right"></i></button></a>
+                <h2 class="text-xl font-bold absolute bottom-0 bg-black bg-opacity-50 text-white p-2 rounded-md text-center w-full">Seaside District</h2>
+            </div>
+
+
+            <div class="w-[350px] lg:w-[400px] h-[500px] rounded-md relative" style="background-image: url('/images/premierDistrict/1.png'); background-size: cover; background-position: center;" data-aos="fade-up" data-aos-delay="150">
+                <a href="/src/premier.html"><button class="absolute top-2 right-2 bg-blue-400 text-white py-2 px-4 rounded-full hover:bg-blue-600 transition duration-300 ease-in-out"><i class="fa-solid fa-arrow-right"></i></button></a>
+                <h2 class="text-xl font-bold absolute bottom-0 bg-black bg-opacity-50 text-white p-2 rounded-md text-center w-full">Premier District</h2>
+            </div>
+    </div>
+</section>
+
+
+<section id="third" class="w-full h-full bg-nude">
+  <h2 class="text-6xl xl:text-8xl font-bold text-gray-700 text-center pt-64 xl:pt-0" data-aos="fade-right">THE DEVELOPER</h2>
+  <div class="w-full h-auto mt-20 flex flex-col xl:flex-row items-center justify-center">
+    <div class="w-full xl:w-[50%] h-full flex justify-center items-center flex-col space-y-8 xl:ml-10">
+      <img src="/images/clublaiya/landcologo.png" alt="landco logo" class="w-48 xl:w-64">
+      <h2 class="text-2xl xl:text-3xl font-bold mb-4 text-gray-100 bg-brown w-auto rounded-md py-2 xl:py-5 px-4 xl:px-10" data-aos="fade-right">NATIONWIDE DEVELOPMENTS</h2>
+      <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 xl:gap-10">
+        <div class="bg-white p-8 xl:p-10 rounded-md shadow-md" data-aos="fade-up" data-aos-anchor-placement="bottom-bottom" data-aos-delay="50">
+          <strong class="block text-base xl:text-xl text-gray-900">19 Projects Nationwide</strong>
+        </div>
+        <div class="bg-white p-8 xl:p-10 rounded-md shadow-md" data-aos="fade-up" data-aos-anchor-placement="bottom-bottom" data-aos-delay="100">
+          <strong class="block text-base xl:text-xl text-gray-900">17 Completed Projects</strong>
+        </div>
+        <div class="bg-white p-8 xl:p-10 rounded-md shadow-md" data-aos="fade-up" data-aos-anchor-placement="bottom-bottom" data-aos-delay="150">
+          <strong class="block text-base xl:text-xl text-gray-900">2 Ongoing Developments</strong>
+        </div>
+        <div class="bg-white p-8 xl:p-10 rounded-md shadow-md" data-aos="fade-up" data-aos-anchor-placement="bottom-bottom" data-aos-delay="200">
+          <strong class="block text-base xl:text-xl text-gray-900">7 Actively Selling Projects</strong>
+        </div>
+      </div>
+    </div>
+    <div class="w-full lg:w-[50%] h-full xl:flex justify-center items-center lg:mt-0 hidden lg:mr-20" data-aos="fade-up">
+      <img src="/images/clublaiya/landco.png" alt="" class="w-full max-w-[70%]">
+    </div>
+  </div>
+</section>
+
+
+<section id="fourth" class="w-full h-[30%] pt-96 sm:pt-64 xl:pt-0 bg-nude">
+  <div class="scroller" data-direction="right" data-speed="slow">
+    <div class="scroller__inner">
+      <img src="/images/awards/award-10th-international-finance.jpg" alt="" class="rounded-md" onclick="viewImage('/images/awards/award-10th-international-finance.jpg')">
+      <img src="/images/awards/award-edge.jpg" alt="" class="rounded-md" onclick="viewImage('/images/awards/award-edge.jpg')">
+      <img src="/images/awards/award-fiabci.jpg" alt="" class="rounded-md" onclick="viewImage('/images/awards/award-fiabci.jpg')">
+      <img src="/images/awards/award-lamudi.jpg" alt="" class="rounded-md" onclick="viewImage('/images/awards/award-lamudi.jpg')">
+      <img src="/images/awards/award-panfinance.jpg" alt="" class="rounded-md" onclick="viewImage('/images/awards/award-panfinance.jpg')">
+      <img src="/images/awards/award1.jpg" alt="" class="rounded-md" onclick="viewImage('/images/awards/award1.jpg')">
+      <img src="/images/awards/award2.jpg" alt="" class="rounded-md" onclick="viewImage('/images/awards/award2.jpg')">
+      <img src="/images/awards/award3.jpg" alt="" class="rounded-md" onclick="viewImage('/images/awards/award3.jpg')">
+      <img src="/images/awards/TGEAwardsLogo.jpg" alt="" class="rounded-md" onclick="viewImage('/images/awards/TGEAwardsLogo.jpg')">
+    </div>
+  </div>
+</section>
+
+  <div class="w-full min-h-auto pt-80 xl:pt-0 bg-nude overflow-hidden">
+    <section class="w-full min-h-full px-4 flex justify-center items-center xl:flex-row flex-col">
+
+      <div class="w-full h-full relative mt-8 xl:mt-0 xl:hidden flex justify-center items-center">
+          <div class="w-[70%] h-full object-cover rounded-full overflow-hidden">
+              <img src="/images/mp.png" alt="" class="w-full h-full object-cover">
+          </div>
+      </div>
+      
+      <div class="w-full xl:w-[50%] h-full p-5 md:p-10 flex flex-col justify-center items-center">
+          <h1 class="text-4xl md:text-5xl lg:text-5xl text-center font-semibold text-gray-800 mb-2 mt-20" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out"
+          >
+              Manuel V. Pangilinan
+          </h1>
+          <p class="text-gray-600 text-lg md:text-xl mb-5 text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out"
+          >Chairman, Landco Pacific Corporation</p>
+          <div class="mt-4 text-gray-800 space-y-10 xl:space-y-3">
+              
+              <div class="mb-3 p-3 border rounded shadow flex justify-center space-x-1 items-center" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out"
+              data-aos-delay="100">
+                  <p class="font-bold">
+                      Chairman, PLDT and Smart Communications
+                  </p>
+                  <img src="/images/pldt.png" alt="Meralco Logo" class="w-16 h-12">
+                  <img src="/images/smart.png" alt="Meralco Logo" class="w-16 h-12">
+              </div>
+           
+  
+              <div class="mb-3 p-3 border rounded shadow flex justify-center space-x-5 items-center" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out"
+              data-aos-delay="200">
+                  <p class="font-bold">
+                      Chairman, Manila Electric Company (Meralco)
+                  </p>
+                  <img src="/images/Meralco.svg.png" alt="Meralco Logo" class="w-16 h-12">
+              </div>
+              
+              <div class="mb-3 p-3 border rounded shadow flex justify-center space-x-5 items-center" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out"
+              data-aos-delay="300">
+                  <p class="font-bold">
+                      Chairman, Maynilad Water Services Corporation
+                  </p>
+                  <img src="/images/Maynilad-Logo.png" alt="Meralco Logo" class="w-16 h-12">
+              </div>
+             
+              
+              <div class="mb-3 p-3 border rounded shadow flex justify-center space-x-5 items-center" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out"
+              data-aos-delay="400">
+                  <p class="font-bold">
+                      Chairman, Mediaquest Incorporated (TV5), Associated Broadcasting Corp.
+                  </p>
+                  <img src="/images/TV5_(Philippines)_logo.svg.png" alt="Meralco Logo" class="w-16 h-12">
+              </div>
+              
+              <div class="mb-3 p-3 border rounded shadow flex justify-center space-x-5 items-center" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out"
+              data-aos-delay="500">
+                  <p class="font-bold">
+                      Chairman, Philex Mining Corporation, Philex Petroleum Corporation
+                  </p>
+                  <img src="/images/PMC.png" alt="Meralco Logo" class="w-40 h-12">
+              </div>
+             
+  
+              <div class="mb-3 p-3 border rounded shadow flex justify-center space-x-5 items-center" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out"
+              data-aos-delay="600">
+                  <p class="font-bold">
+                      Chairman, Manila North Tollways Corporation (NLEX, SCTEX, CALAX)
+                  </p>
+                  <img src="/images/MNT.png" alt="Meralco Logo" class="w-40 h-12">
+              </div>
+  
+              <div class="mb-3 p-3 border rounded shadow flex justify-center space-x-5 items-center" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out"
+              data-aos-delay="700">
+                  <p class="font-bold">
+                      Chairman, Metro Pacific Hospitals (Makati Med, Cardinal Santos, Asian Hospital, etc)
+                  </p>
+                  <img src="/images/mph.png" alt="Meralco Logo" class="w-28 h-14">
+              </div>
+  
+              <div class="mb-3 p-3 border rounded shadow flex justify-center space-x-5 items-center" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out"
+              data-aos-delay="800">
+                  <p class="font-bold">
+                      Chairman, Light Rail Manila Corp.
+                  </p>
+                  <img src="/images/lrm.png" alt="Meralco Logo" class="w-28 h-14">
+              </div>
+          </div>
+      </div>
+      <div class="w-full xl:w-[40%] h-full relative mt-8 xl:mt-0 hidden xl:block overflow-hidden">
+          <div class="w-full h-full object-cover bg-gradient-to-b from-yellow-50 to bg-yellow-100 overflow-hidden" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out" data-aos-delay="900"
+          >
+              <img src="/images/mp.png" alt="" class="w-full h-full object-cover" data-aos="fade-up" data-aos-duration="1400" data-aos-easing="ease-in-out"
+              >
+          </div>
+      </div>
+      
+  </section>
+  </div>
+
+
+  <section class="w-full h-auto bg-nude pb-48">
+    <h1 class="text-5xl w-full text-center xl:text-8xl pt-20 text-gray-700 tracking-wider mb-3" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out">LOCATION</h1>
+    <p class="w-full text-base px-2 xl:w-[50%] mx-auto text-center xl:text-xl text-gray-700" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out" data-aos-delay="200">Under three hours from Metro Manila, the master-planned Resort Estates feature leisure living in a true resort community highlighting wide open spaces and beautiful promenades, with parks and retail landscapes.</p>
+
+    <div class="flex w-full flex-col space-x-0 space-y-10 xl:space-y-0 xl:flex-row justify-center items-center xl:space-x-10 mt-10" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out" data-aos-delay="400">
+      <p style="background-color: #3498db; color: white; padding: 10px;" class="rounded-md text-center">Via R-3</p>
+<p style="background-color: #f1c40f; color: black; padding: 10px;" class="rounded-md text-center">Via Garcia - Rosario - San Juan - Candelaria Rd Via</p>
+<p style="background-color: #2ecc71; color: white; padding: 10px;" class="rounded-md text-center">Pan-Philippine Hwy</p>
+
+    </div>
+    <div class="flex justify-center items-center mt-10 relative">
+     
+    <img src="/images/clublaiya/location.png" alt="location" class="w-full max-w-[900px] rounded-md" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out" data-aos-delay="600">
+   
+   
+    </div>
+    
+
+
+  </section>
+
+
+  <footer class="bg-gray-900 text-white p-8">
+    <div class="container mx-auto flex flex-col lg:flex-row justify-between">
+
+      <!-- Company Info -->
+      <div class="mb-4 lg:mb-0">
+        <img src="/images/logo.png" alt="Landco Pacific Corporation" class="w-40 h-14 mb-4">
+        <p>Landco Pacific Corporation</p>
+        <p>25th Floor Tower 1, Insular Life Centre</p>
+        <p>Insular Drive, Filinvest Corporate City, Alabang, Muntinlupa, 1781 Metro Manila</p>
+        <p>Phone: 09190005789, 09177920404</p>
+        <p>Email: <a href="mailto:mcdeleon@landcosales.ph">mcdeleon@landcosales.ph</a></p>
+      </div>
+
+      <!-- Navigation Links -->
+      <div class="mb-4 lg:mb-0">
+        <h3 class="text-lg font-semibold mb-2">Navigation</h3>
+        <ul>
+          <li><a href="/src/index.html">Home</a></li>
+          <li><a href="/src/spinnaker.html">Spinnaker</a></li>
+          <li><a href="/src/seaside.html">Seaside District</a></li>
+          <li><a href="/src/premier.html">Premier District</a></li>
+          <li><a href="/src/contactUs.html">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <!-- Social Media Links -->
+      <div>
+        <h3 class="text-lg font-semibold mb-2">Connect with Us</h3>
+        <div class="flex space-x-4">
+          <a href="https://www.facebook.com/ajilandcosales" target="_blank" class="text-blue-500 hover:text-blue-700"><i class="fa-brands fa-facebook fa-xl"></i></a>
+          <a href="https://www.instagram.com/playalaiyabatangas/" target="_blank" class="text-red-500 hover:text-red-700"><i class="fa-brands fa-instagram fa-xl"></i></a>
+          <a href="https://mail.google.com/mail/u/0/#inbox?compose=CllgCJvqKMHFDcBJkfGpClgCXLgdkSXJncrDqBSZKvJVdZtxzHVfPqjBXtRFdVHtHNBwlHDrVqB" target="_blank" class="text-amber-500 hover:text-amber-700"><i class="fa-solid fa-envelope fa-xl"></i></a>
+          <a href="viber://chat?number=+639985694678" class="text-viber hover:text-violet-950"><i class="fa-brands fa-viber fa-xl"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+ 
+  
+  
+
+  <script src="/index.js"></script>
+</body>
+</html>
